@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>خديمة DZ - منصة العمال وأصحاب العمل في الجزائر</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f1e8;--ink:#10231e;--mute:#586b65;--card:#fffdf7;--line:#dcd4c2;--ac:#0d5a4a;--acI:#fff;--hot:#e3a21a;--soft:#e4efe9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b18;--ink:#eef2ee;--mute:#9db1ab;--card:#152622;--line:#2a3d38;--ac:#3fb59b;--acI:#06201a;--soft:#1b332d}}
+:root[data-theme="dark"]{--bg:#0e1b18;--ink:#eef2ee;--mute:#9db1ab;--card:#152622;--line:#2a3d38;--ac:#3fb59b;--acI:#06201a;--soft:#1b332d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-weight:900;font-size:24px}.logo i{font-style:normal;color:var(--hot)}
+.hero{background:var(--ac);color:var(--acI);border-radius:0 0 28px 28px;padding:10px 0 44px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;opacity:.09;background:repeating-conic-gradient(from 45deg at 50% 50%,#fff 0 12.5%,transparent 0 25%) 0 0/46px 46px}
+.hero .w{position:relative}
+.hero nav .logo{color:var(--acI)}
+h1{font-size:clamp(34px,6.4vw,64px);line-height:1.2;margin:34px 0 12px;font-weight:900;max-width:12em}
+.hero p{font-size:18px;opacity:.9;max-width:36em;margin:0 0 26px}
+.stats{display:flex;gap:26px;flex-wrap:wrap}
+.stats div{font-size:14px;opacity:.9}.stats b{display:block;font-size:30px;font-weight:900;line-height:1.1}
+.panel{margin-top:-26px;position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.tabs{display:flex;gap:6px;margin-bottom:14px}
+.tabs button{flex:1;font:inherit;font-weight:800;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ac);color:var(--acI);border-color:var(--ac)}
+.f{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.f label{font-size:13px;color:var(--mute);display:block}
+select,input[type=search]{width:100%;font:inherit;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+.bar{display:flex;justify-content:space-between;align-items:center;margin:26px 0 12px;font-weight:800;gap:10px;flex-wrap:wrap}
+.bar label{font-weight:400;color:var(--mute);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;display:block;width:100%;text-align:right;font:inherit;color:inherit}
+.card:hover{border-color:var(--ac)}
+.top{display:flex;gap:12px;align-items:center}
+.av{width:50px;height:50px;border-radius:50%;background:var(--soft);color:var(--ac);display:grid;place-items:center;font-weight:900;font-size:20px;flex:none}
+.top b{font-size:18px;display:block;line-height:1.3}.top small{color:var(--mute)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 8px}
+.tags span{background:var(--soft);border-radius:999px;padding:2px 11px;font-size:13px}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:14px;gap:8px;flex-wrap:wrap}
+.ok{color:var(--ac);font-weight:800}.no{color:#b3541e;font-weight:800}
+.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:12px;padding:22px;color:var(--mute)}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);max-width:520px;width:92%;padding:24px;font-family:inherit}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:14px 0}dt{color:var(--mute)}dd{margin:0;font-weight:600}
+.cta{font:inherit;font-weight:800;border:0;border-radius:10px;background:var(--ac);color:var(--acI);padding:11px 20px;cursor:pointer}
+.cta.g{background:var(--soft);color:var(--ink)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:56px 0 36px}.how h3{margin:0}.how p{margin:0;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-size:14px}
+@media(max-width:820px){.f{grid-template-columns:1fr 1fr}.grid,.how{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="w">
+<nav><div class="logo">خديمة<i> DZ</i></div></nav>
+<h1>العامل المناسب والعمل المناسب، في كل ولايات الجزائر</h1>
+<p>ابحث بالمهنة والولاية والبلدية. اطّلع على خبرة العامل ومهاراته، أو على شروط عرض العمل وراتبه، قبل أن تتواصل.</p>
+<div class="stats"><div><b id="s1"></b>عامل مسجّل</div><div><b id="s2"></b>عرض عمل مفتوح</div><div><b>58</b>ولاية</div></div>
+</div></header>
+<main class="w">
+<section class="panel">
+<div class="tabs" role="tablist"><button role="tab" id="tw" aria-selected="true">العمال</button><button role="tab" id="to" aria-selected="false">عروض أصحاب العمل</button></div>
+<div class="f">
+<div><label for="job">المهنة</label><select id="job"></select></div>
+<div><label for="wil">الولاية</label><select id="wil"></select></div>
+<div><label for="com">البلدية</label><select id="com"></select></div>
+<div id="xw"><label for="exp">الخبرة</label><select id="exp"><option value="0">أي خبرة</option><option value="3">3 سنوات فأكثر</option><option value="5">5 سنوات فأكثر</option><option value="10">10 سنوات فأكثر</option></select></div>
+<div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأحدث</option><option value="r">الأعلى تقييمًا</option></select></div>
+</div>
+</section>
+<div class="bar"><span id="cnt" aria-live="polite"></span><label><input type="checkbox" id="av"> المتاحون الآن فقط</label></div>
+<div class="grid" id="grid"></div>
+<section class="how">
+<div><h3>ابحث بدقة</h3><p>58 ولاية، وبلديات أهم الولايات، مع فلتر الخبرة والتوفر.</p></div>
+<div><h3>اطّلع على التفاصيل</h3><p>مهارات العامل ولغاته، وراتب العرض وعقده ومتطلباته.</p></div>
+<div><h3>تواصل مباشرة</h3><p>اتصل بالطرف الآخر واتفقا دون وسيط.</p></div>
+</section>
+</main>
+<dialog id="dlg"><div id="dc"></div><div style="display:flex;gap:8px;margin-top:10px"><button class="cta" id="call">اتصال</button><button class="cta g" id="cl">إغلاق</button></div></dialog>
+<footer><div class="w">خديمة DZ. البيانات المعروضة أمثلة للتجربة.</div></footer>
+<script>
+var WL="أدرار,الشلف,الأغواط,أم البواقي,باتنة,بجاية,بسكرة,بشار,البليدة,البويرة,تمنراست,تبسة,تلمسان,تيارت,تيزي وزو,الجزائر,الجلفة,جيجل,سطيف,سعيدة,سكيكدة,سيدي بلعباس,عنابة,قالمة,قسنطينة,المدية,مستغانم,المسيلة,معسكر,ورقلة,وهران,البيض,إليزي,برج بوعريريج,بومرداس,الطارف,تندوف,تيسمسيلت,الوادي,خنشلة,سوق أهراس,تيبازة,ميلة,عين الدفلى,النعامة,عين تموشنت,غرداية,غليزان,تيميمون,برج باجي مختار,أولاد جلال,بني عباس,عين صالح,عين قزام,تقرت,جانت,المغير,المنيعة".split(",");
+var C={16:"الجزائر الوسطى,باب الزوار,بئر مراد رايس,الحراش,بن عكنون,براقي,الدار البيضاء,باب الوادي,الرويبة,حيدرة",
+31:"وهران,السانيا,أرزيو,بئر الجير,بوتليليس,عين الترك,حاسي بونيف",
+25:"قسنطينة,الخروب,عين سمارة,الحامة بوزيان,زيغود يوسف,ديدوش مراد",
+19:"سطيف,العلمة,عين ولمان,عين أرنات,بوعنداس",
+15:"تيزي وزو,ذراع بن خدة,عزازقة,أزفون,ذراع الميزان",
+23:"عنابة,البوني,الحجار,سيدي عمار",
+9:"البليدة,بوفاريك,العفرون,الأربعاء,موزاية",
+5:"باتنة,عين التوتة,بريكة,مروانة",
+13:"تلمسان,الرمشي,مغنية,ندرومة",
+6:"بجاية,أقبو,خراطة,أميزور",
+47:"غرداية,متليلي,بريان,القرارة",
+30:"ورقلة,حاسي مسعود,سيدي خويلد"};
+var J="كهربائي,سباك,بنّاء,نجار,دهّان,سائق,طباخ,عامل نظافة,ميكانيكي,لحّام,عامل فلاحي,حارس".split(",");
+var W=[
+["محمد بوزيد","كهربائي",16,"بئر مراد رايس",8,4.8,1,"تمديدات منزلية,لوحات كهربائية,إنارة","العربية,الفرنسية","كهربائي معتمد، أنجز تمديدات لعشرات الشقق والمحلات.","0550 11 22 33"],
+["يوسف بن عمر","سباك",31,"السانيا",5,4.5,1,"تركيب حمامات,كشف التسربات,سخانات","العربية","سباك سريع في الأعطال الطارئة.","0661 22 33 44"],
+["كريم لعيدي","بنّاء",25,"الخروب",12,4.9,0,"بناء هياكل,تبليط,تشطيب","العربية,الأمازيغية","رئيس ورشة بخبرة طويلة في السكنات الفردية.","0770 33 44 55"],
+["سمير حداد","سائق",19,"العلمة",6,4.3,1,"رخصة B وC,نقل بضائع","العربية,الفرنسية","سائق شاحنة خفيفة وسيارة، يعرف الطرق الوطنية.","0555 44 55 66"],
+["فاطمة مراد","عامل نظافة",16,"باب الزوار",4,4.7,1,"تنظيف مكاتب,تنظيف بعد البناء","العربية","تعمل بدقة ومواعيد ثابتة.","0560 55 66 77"],
+["عادل مختاري","سباك",16,"الحراش",10,4.6,0,"شبكات صرف,تدفئة مركزية","العربية,الفرنسية","خبرة في العمارات والمطاعم.","0675 66 77 88"],
+["رشيد ساحلي","نجار",15,"ذراع بن خدة",7,4.4,1,"أبواب,مطابخ,أثاث مخصص","العربية,الأمازيغية","يصنع الأثاث حسب المقاس.","0793 77 88 99"],
+["أمين زروقي","ميكانيكي",25,"قسنطينة",9,4.8,1,"محركات,كهرباء السيارات","العربية,الفرنسية","ميكانيكي سيارات، يعمل في الورشة أو ينتقل إليك.","0541 88 99 00"],
+["هدى بلقاسم","طباخ",31,"وهران",6,4.9,1,"مطبخ جزائري,حلويات,ولائم","العربية,الفرنسية","طاهية للمطاعم والمناسبات.","0662 99 00 11"],
+["إبراهيم قادري","لحّام",9,"بوفاريك",11,4.5,0,"حديد,ألمنيوم,بوابات","العربية","لحام أبواب ونوافذ وهياكل معدنية.","0771 00 11 22"]
+];
+var O=[
+["مقاولة النور للبناء","بنّاء ماهر","بنّاء",31,"وهران","60,000 - 80,000 د.ج","عقد محدد المدة",4,"ورشة سكنات جماعية لمدة 8 أشهر مع تأمين اجتماعي.","خبرة 5 سنوات على الأقل","منذ يومين"],
+["مطعم الأصالة","طباخ رئيسي","طباخ",16,"حيدرة","70,000 د.ج","دوام كامل",1,"مطعم يقدم الأكل الجزائري التقليدي، العمل 6 أيام في الأسبوع.","خبرة في المطبخ الجزائري","منذ 3 أيام"],
+["شركة الأفق للكهرباء","كهربائي صناعي","كهربائي",25,"قسنطينة","65,000 - 90,000 د.ج","دوام كامل",2,"تركيب وصيانة لوحات كهربائية في مصانع المنطقة.","شهادة تكوين مهني","منذ أسبوع"],
+["نقل الشرق","سائق شاحنة","سائق",19,"سطيف","55,000 د.ج + منح","دوام كامل",3,"نقل بضائع بين الولايات الشرقية.","رخصة C وخبرة 3 سنوات","منذ 4 أيام"],
+["ورشة الإتقان","نجار","نجار",15,"تيزي وزو","50,000 - 70,000 د.ج","دوام كامل",1,"صناعة مطابخ وأبواب خشبية.","خبرة في النجارة العصرية","اليوم"],
+["مزرعة الواحة","عامل فلاحي","عامل فلاحي",47,"متليلي","40,000 د.ج + سكن","موسمي",6,"موسم جني التمور مع إقامة مجانية.","لا خبرة مطلوبة","منذ 5 أيام"]
+];
+var $=function(i){return document.getElementById(i)},tab="w";
+function opts(s,a,all){s.innerHTML="<option value=''>"+all+"</option>"+a.map(function(x,i){return "<option value='"+x[0]+"'>"+x[1]+"</option>"}).join("")}
+opts($("job"),J.map(function(x){return[x,x]}),"كل المهن");
+opts($("wil"),WL.map(function(x,i){return[i+1,(i+1<10?"0":"")+(i+1)+" - "+x]}),"كل الولايات");
+$("s1").textContent=W.length+"+";$("s2").textContent=O.length;
+function coms(){var l=C[$("wil").value];if(!$("wil").value){opts($("com"),[],"اختر الولاية أولًا")}else if(!l){opts($("com"),[],"كل البلديات")}else{opts($("com"),l.split(",").map(function(x){return[x,x]}),"كل البلديات")}}
+function loc(w,c){return (w<10?"0":"")+w+" - "+WL[w-1]+" - "+c}
+function render(){
+var j=$("job").value,w=+$("wil").value,c=$("com").value,e=+$("exp").value,av=$("av").checked,s=$("srt").value,h="",n=0;
+if(tab=="w"){
+var r=W.filter(function(x){return(!j||x[1]==j)&&(!w||x[2]==w)&&(!c||x[3]==c)&&x[4]>=e&&(!av||x[6])});
+if(s=="r")r=r.slice().sort(function(a,b){return b[5]-a[5]});
+n=r.length;
+h=r.map(function(x){var i=W.indexOf(x);return "<button class='card' data-k='w"+i+"'><div class='top'><div class='av'>"+x[0][0]+"</div><div><b>"+x[0]+"</b><small>"+x[1]+" - "+loc(x[2],x[3])+"</small></div></div><div class='tags'>"+x[7].split(",").map(function(t){return "<span>"+t+"</span>"}).join("")+"</div><div class='meta'><span>خبرة "+x[4]+" سنوات</span><span>التقييم "+x[5]+"</span><span class='"+(x[6]?"ok":"no")+"'>"+(x[6]?"متاح الآن":"مشغول")+"</span></div></button>"}).join("");
+$("cnt").textContent=n+" عامل";
+}else{
+var r2=O.filter(function(x){return(!j||x[2]==j)&&(!w||x[3]==w)&&(!c||x[4]==c)});
+n=r2.length;
+h=r2.map(function(x){var i=O.indexOf(x);return "<button class='card' data-k='o"+i+"'><div class='top'><div class='av'>"+x[0][0]+"</div><div><b>"+x[1]+"</b><small>"+x[0]+" - "+loc(x[3],x[4])+"</small></div></div><div class='tags'><span>"+x[6]+"</span><span>"+x[7]+" مناصب</span></div><div class='meta'><span class='ok'>"+x[5]+"</span><span>"+x[10]+"</span></div></button>"}).join("");
+$("cnt").textContent=n+" عرض عمل";
+}
+$("grid").innerHTML=h||"<div class='empty'>لا توجد نتائج بهذه المواصفات. جرّب ولاية أخرى أو أزل بعض الفلاتر.</div>";
+$("xw").style.display=tab=="w"?"":"none";
+}
+function setTab(t){tab=t;$("tw").setAttribute("aria-selected",t=="w");$("to").setAttribute("aria-selected",t=="o");$("av").parentNode.style.visibility=t=="w"?"visible":"hidden";render()}
+$("tw").onclick=function(){setTab("w")};$("to").onclick=function(){setTab("o")};
+$("wil").onchange=function(){coms();render()};
+["job","com","exp","srt","av"].forEach(function(i){$(i).onchange=render});
+$("grid").onclick=function(ev){var b=ev.target.closest(".card");if(!b)return;var k=b.dataset.k,i=+k.slice(1),x,h;
+if(k[0]=="w"){x=W[i];h="<h2 style='margin:0'>"+x[0]+"</h2><div style='color:var(--mute)'>"+x[1]+"</div><p>"+x[9]+"</p><dl><dt>الموقع</dt><dd>"+loc(x[2],x[3])+"</dd><dt>الخبرة</dt><dd>"+x[4]+" سنوات</dd><dt>التقييم</dt><dd>"+x[5]+" من 5</dd><dt>المهارات</dt><dd>"+x[7].split(",").join("، ")+"</dd><dt>اللغات</dt><dd>"+x[8].split(",").join("، ")+"</dd><dt>الحالة</dt><dd>"+(x[6]?"متاح الآن":"مشغول حاليًا")+"</dd></dl>";$("call").textContent="اتصل: "+x[10];$("call").onclick=function(){location.href="tel:"+x[10].replace(/ /g,"")}}
+else{x=O[i];h="<h2 style='margin:0'>"+x[1]+"</h2><div style='color:var(--mute)'>"+x[0]+"</div><p>"+x[8]+"</p><dl><dt>الموقع</dt><dd>"+loc(x[3],x[4])+"</dd><dt>الراتب</dt><dd>"+x[5]+"</dd><dt>نوع العقد</dt><dd>"+x[6]+"</dd><dt>المناصب</dt><dd>"+x[7]+"</dd><dt>المتطلبات</dt><dd>"+x[9]+"</dd><dt>النشر</dt><dd>"+x[10]+"</dd></dl>";$("call").textContent="تقدّم لهذا العرض";$("call").onclick=function(){$("dlg").close()}}
+$("dc").innerHTML=h;$("dlg").showModal()};
+$("cl").onclick=function(){$("dlg").close()};
+coms();render();
+</script>
+</body>
+</html>
