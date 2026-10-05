@@ -54,7 +54,17 @@ dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:14px 0}dt{col
 .sheet-box h3{margin:0 0 12px;font-size:26px}
 .sheet-box iframe{width:100%;height:760px;border:0;border-radius:12px;background:#fff}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-size:14px}
-@media(max-width:820px){.f{grid-template-columns:1fr 1fr}.grid,.how{grid-template-columns:1fr}.sheet-box iframe{height:620px}}
+#openWorkerForm,#openOfferForm{margin:20px 10px 20px 0;font:inherit;font-weight:800;border:0;border-radius:10px;background:var(--ac);color:var(--acI);padding:12px 20px;cursor:pointer;display:inline-block}
+#openOfferForm{background:var(--hot);color:#000}
+dialog form{display:grid;gap:12px}
+dialog input,dialog select,dialog textarea{width:100%;font:inherit;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+dialog textarea{min-height:100px;resize:vertical}
+dialog h3{margin:0 0 16px;font-size:22px}
+dialog .form-group{display:grid;gap:4px}
+dialog .form-group label{font-size:13px;color:var(--mute);font-weight:600}
+.form-buttons{display:flex;gap:10px;margin-top:16px}
+.form-buttons button{flex:1}
+@media(max-width:820px){.f{grid-template-columns:1fr 1fr}.grid,.how{grid-template-columns:1fr}.sheet-box iframe{height:620px}#openWorkerForm,#openOfferForm{width:100%;margin:8px 0}}
 </style>
 </head>
 <body>
@@ -64,9 +74,14 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <p>ابحث بالمهنة والولاية والبلدية. اطّلع على خبرة العامل ومهاراته، أو على شروط عرض العمل وراتبه، قبل أن تتواصل.</p>
 <div class="stats"><div><b id="s1"></b>عامل مسجّل</div><div><b id="s2"></b>عرض عمل مفتوح</div><div><b>58</b>ولاية</div></div>
 </div></header>
+
 <main class="w">
 <section class="panel">
-<div class="tabs" role="tablist"><button role="tab" id="tw" aria-selected="true">العمال</button><button role="tab" id="to" aria-selected="false">عروض أصحاب العمل</button></div>
+<div class="tabs" role="tablist">
+<button role="tab" id="tw" aria-selected="true">العمال</button>
+<button role="tab" id="to" aria-selected="false">عروض أصحاب العمل</button>
+</div>
+
 <div class="f">
 <div><label for="job">المهنة</label><select id="job"></select></div>
 <div><label for="wil">الولاية</label><select id="wil"></select></div>
@@ -74,24 +89,149 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <div id="xw"><label for="exp">الخبرة</label><select id="exp"><option value="0">أي خبرة</option><option value="3">3 سنوات فأكثر</option><option value="5">5 سنوات فأكثر</option><option value="10">10 سنوات فأكثر</option></select></div>
 <div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأحدث</option><option value="r">الأعلى تقييمًا</option></select></div>
 </div>
+
+<div>
+<button class="cta" id="openWorkerForm">+ إضافة عامل جديد</button>
+<button class="cta" id="openOfferForm">+ إضافة عرض عمل</button>
+</div>
 </section>
-<div class="bar"><span id="cnt" aria-live="polite"></span><label><input type="checkbox" id="av"> المتاحون الآن فقط</label></div>
+
+<div class="bar">
+<span id="cnt" aria-live="polite"></span>
+<label><input type="checkbox" id="av"> المتاحون الآن فقط</label>
+</div>
+
 <div class="grid" id="grid"></div>
+
 <section class="how">
 <div><h3>ابحث بدقة</h3><p>58 ولاية، وبلديات أهم الولايات، مع فلتر الخبرة والتوفر.</p></div>
 <div><h3>اطّلع على التفاصيل</h3><p>مهارات العامل ولغاته، وراتب العرض وعقده ومتطلباته.</p></div>
 <div><h3>تواصل مباشرة</h3><p>اتصل بالطرف الآخر واتفقا دون وسيط.</p></div>
 </section>
-<section class="sheet-box">
-  <h3>الجدول المصاحب للبيانات</h3>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQWCgcf7eZA_24sL40vE6bLLGtBwyGALSlmecuSHIStUlTlqC2nTet3n6-8-pjo9bl5KXFJUvMqS6IP/pubhtml?widget=true&headers=false"></iframe>
-</section>
 </main>
+
+<!-- فورم إضافة عامل -->
+<dialog id="workerDialog">
+<h3>إضافة عامل جديد</h3>
+<form id="workerForm">
+<div class="form-group">
+<label>الاسم</label>
+<input type="text" name="name" placeholder="أدخل اسمك الكامل" required>
+</div>
+<div class="form-group">
+<label>المهنة</label>
+<input type="text" name="job" placeholder="مثل: كهربائي، سباك، إلخ" required>
+</div>
+<div class="form-group">
+<label>الولاية</label>
+<input type="text" name="wil" placeholder="مثل: 16 - الجزائر" required>
+</div>
+<div class="form-group">
+<label>البلدية</label>
+<input type="text" name="city" placeholder="البلدية" required>
+</div>
+<div class="form-group">
+<label>سنوات الخبرة</label>
+<input type="number" name="exp" min="0" placeholder="0" required>
+</div>
+<div class="form-group">
+<label>التقييم (من 0 إلى 5)</label>
+<input type="number" name="score" min="0" max="5" step="0.1" placeholder="4.8" required>
+</div>
+<div class="form-group">
+<label>الحالة</label>
+<select name="available" required>
+<option value="">اختر الحالة</option>
+<option value="نعم">متاح الآن</option>
+<option value="لا">مشغول</option>
+</select>
+</div>
+<div class="form-group">
+<label>المهارات (مفصولة بفواصل)</label>
+<textarea name="skills" placeholder="مثل: تمديدات منزلية، لوحات كهربائية" required></textarea>
+</div>
+<div class="form-group">
+<label>اللغات</label>
+<input type="text" name="langs" placeholder="مثل: العربية، الفرنسية" required>
+</div>
+<div class="form-group">
+<label>نبذة قصيرة</label>
+<textarea name="desc" placeholder="قصة مختصرة عنك ومهاراتك"></textarea>
+</div>
+<div class="form-group">
+<label>الهاتف</label>
+<input type="tel" name="phone" placeholder="0550112233" required>
+</div>
+<div class="form-buttons">
+<button type="submit" class="cta">إرسال</button>
+<button type="button" class="cta g" onclick="document.getElementById('workerDialog').close()">إلغاء</button>
+</div>
+</form>
+</dialog>
+
+<!-- فورم إضافة عرض عمل -->
+<dialog id="offerDialog">
+<h3>إضافة عرض عمل</h3>
+<form id="offerForm">
+<div class="form-group">
+<label>اسم الشركة</label>
+<input type="text" name="company" placeholder="اسم الشركة أو المؤسسة" required>
+</div>
+<div class="form-group">
+<label>عنوان الوظيفة</label>
+<input type="text" name="title" placeholder="مثل: كهربائي محترف، بنّاء ماهر" required>
+</div>
+<div class="form-group">
+<label>المهنة</label>
+<input type="text" name="job" placeholder="المهنة الرئيسية" required>
+</div>
+<div class="form-group">
+<label>الولاية</label>
+<input type="text" name="wil" placeholder="مثل: 16 - الجزائر" required>
+</div>
+<div class="form-group">
+<label>البلدية</label>
+<input type="text" name="city" placeholder="البلدية" required>
+</div>
+<div class="form-group">
+<label>الراتب</label>
+<input type="text" name="salary" placeholder="مثل: 50,000 - 70,000 د.ج" required>
+</div>
+<div class="form-group">
+<label>نوع العقد</label>
+<input type="text" name="contract" placeholder="مثل: دوام كامل، عقد محدد المدة" required>
+</div>
+<div class="form-group">
+<label>عدد المناصب</label>
+<input type="number" name="positions" min="1" placeholder="1" required>
+</div>
+<div class="form-group">
+<label>وصف الوظيفة</label>
+<textarea name="desc" placeholder="اشرح طبيعة العمل والمسؤوليات" required></textarea>
+</div>
+<div class="form-group">
+<label>المتطلبات</label>
+<textarea name="requirements" placeholder="الخبرة والمؤهلات المطلوبة" required></textarea>
+</div>
+<div class="form-group">
+<label>تاريخ النشر</label>
+<input type="text" name="date" placeholder="مثل: منذ يومين" required>
+</div>
+<div class="form-buttons">
+<button type="submit" class="cta">إرسال</button>
+<button type="button" class="cta g" onclick="document.getElementById('offerDialog').close()">إلغاء</button>
+</div>
+</form>
+</dialog>
+
+<!-- فورم البحث المتقدم -->
 <dialog id="dlg"><div id="dc"></div><div style="display:flex;gap:8px;margin-top:10px"><button class="cta" id="call">اتصال</button><button class="cta g" id="cl">إغلاق</button></div></dialog>
-<footer><div class="w">خديمة DZ. البيانات المعروضة أمثلة للتجربة.</div></footer>
+
+<footer><div class="w">خديمة DZ. منصة آمنة وموثوقة للعمال وأصحاب العمل في الجزائر.</div></footer>
+
 <script>
-const SHEET_ID = '1u5PvZGDcQmU-KAdjM0fC3BL6woqoFJCPoA_RaXV4Kzc';
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+const SHEET_ID = "1u5PvZGDcQmU-KAdjM0fC3BL6woqoFJCPoA_RaXV4Kzc";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/d/YOUR_SCRIPT_ID/usercodeapp"; // سيتم تحديثه لاحقاً
 
 var WL="أدرار,الشلف,الأغواط,أم البواقي,باتنة,بجاية,بسكرة,بشار,البليدة,البويرة,تمنراست,تبسة,تلمسان,تيارت,تيزي وزو,الجزائر,الجلفة,جيجل,سطيف,سعيدة,سكيكدة,سيدي بلعباس,عنابة,قالمة,قسنطينة,المدية,مستغانم,المسيلة,معسكر,ورقلة,وهران,البيض,إليزي,برج بوعريريج,بومرداس,الطارف,تندوف,تيسمسيلت,الوادي,خنشلة,سوق أهراس,تيبازة,ميلة,عين الدفلى,النعامة,عين تموشنت,غرداية,غليزان,تيميمون,برج باجي مختار,أولاد جلال,بني عباس,عين صالح,عين قزام,تقرت,جانت,المغير,المنيعة".split(",");
 var C={16:"الجزائر الوسطى,باب الزوار,بئر مراد رايس,الحراش,بن عكنون,براقي,الدار البيضاء,باب الوادي,الرويبة,حيدرة",
@@ -111,7 +251,7 @@ var W=[
 ["محمد بوزيد","كهربائي",16,"بئر مراد رايس",8,4.8,1,"تمديدات منزلية,لوحات كهربائية,إنارة","العربية,الفرنسية","كهربائي معتمد، أنجز تمديدات لعشرات الشقق والمحلات.","0550 11 22 33"],
 ["يوسف بن عمر","سباك",31,"السانيا",5,4.5,1,"تركيب حمامات,كشف التسربات,سخانات","العربية","سباك سريع في الأعطال الطارئة.","0661 22 33 44"],
 ["كريم لعيدي","بنّاء",25,"الخروب",12,4.9,0,"بناء هياكل,تبليط,تشطيب","العربية,الأمازيغية","رئيس ورشة بخبرة طويلة في السكنات الفردية.","0770 33 44 55"],
-["سمير حداد","سائق",19,"العلمة",6,4.3,1,"رخصة B وC,نقل بضائع","العربية,الفرنسية","��ائق شاحنة خفيفة وسيارة، يعرف الطرق الوطنية.","0555 44 55 66"],
+["سمير حداد","سائق",19,"العلمة",6,4.3,1,"رخصة B وC,نقل بضائع","العربية,الفرنسية","سائق شاحنة خفيفة وسيارة، يعرف الطرق الوطنية.","0555 44 55 66"],
 ["فاطمة مراد","عامل نظافة",16,"باب الزوار",4,4.7,1,"تنظيف مكاتب,تنظيف بعد البناء","العربية","تعمل بدقة ومواعيد ثابتة.","0560 55 66 77"],
 ["عادل مختاري","سباك",16,"الحراش",10,4.6,0,"شبكات صرف,تدفئة مركزية","العربية,الفرنسية","خبرة في العمارات والمطاعم.","0675 66 77 88"],
 ["رشيد ساحلي","نجار",15,"ذراع بن خدة",7,4.4,1,"أبواب,مطابخ,أثاث مخصص","العربية,الأمازيغية","يصنع الأثاث حسب المقاس.","0793 77 88 99"],
@@ -162,53 +302,82 @@ else{x=O[i];h="<h2 style='margin:0'>"+x[1]+"</h2><div style='color:var(--mute)'>
 $("dc").innerHTML=h;$("dlg").showModal()};
 $("cl").onclick=function(){$("dlg").close()};
 
-function normalizeText(v){return String(v||'').trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').replace(/\s+/g,' ');}
+// فتح الفورمات
+document.getElementById("openWorkerForm").onclick=function(){document.getElementById("workerDialog").showModal()};
+document.getElementById("openOfferForm").onclick=function(){document.getElementById("offerDialog").showModal()};
 
-function parseSheetRow(raw){
-  const row = {};
-  raw.forEach((cell, idx) => { row[idx] = cell && cell.v !== undefined ? cell.v : ''; });
-  const name = row[0] || row['name'] || '';
-  const job = row[1] || row['job'] || '';
-  const wil = row[2] || row['wil'] || '';
-  const city = row[3] || row['city'] || '';
-  const exp = row[4] || row['exp'] || 0;
-  const score = Number(row[5] || row['score'] || 0);
-  const available = ['true','yes','نعم','1','متاح','available'].includes(String(row[6] || row['available'] || '').trim().toLowerCase());
-  const skills = row[7] || row['skills'] || '';
-  const langs = row[8] || row['langs'] || '';
-  const desc = row[9] || row['desc'] || '';
-  const phone = row[10] || row['phone'] || '';
-  return [name, job, wil, city, Number(exp) || 0, Number(score) || 0, available ? 1 : 0, skills, langs, desc, phone];
+// معالجة فورم العامل
+document.getElementById("workerForm").addEventListener("submit",async function(e){
+e.preventDefault();
+const formData=new FormData(this);
+const data={
+action:"addWorker",
+name:formData.get("name"),
+job:formData.get("job"),
+wil:formData.get("wil"),
+city:formData.get("city"),
+exp:formData.get("exp"),
+score:formData.get("score"),
+available:formData.get("available"),
+skills:formData.get("skills"),
+langs:formData.get("langs"),
+desc:formData.get("desc"),
+phone:formData.get("phone")
+};
+submitToGoogleSheet(data);
+});
+
+// معالجة فورم عرض العمل
+document.getElementById("offerForm").addEventListener("submit",async function(e){
+e.preventDefault();
+const formData=new FormData(this);
+const data={
+action:"addOffer",
+company:formData.get("company"),
+title:formData.get("title"),
+job:formData.get("job"),
+wil:formData.get("wil"),
+city:formData.get("city"),
+salary:formData.get("salary"),
+contract:formData.get("contract"),
+positions:formData.get("positions"),
+desc:formData.get("desc"),
+requirements:formData.get("requirements"),
+date:formData.get("date")
+};
+submitToGoogleSheet(data);
+});
+
+async function submitToGoogleSheet(data){
+try{
+const response=await fetch(APPS_SCRIPT_URL,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
+});
+alert("تم إرسال البيانات بنجاح! شكراً لك.");
+if(data.action==="addWorker"){
+document.getElementById("workerForm").reset();
+document.getElementById("workerDialog").close();
+W.push([data.name,data.job,parseInt(data.wil),data.city,parseInt(data.exp),parseFloat(data.score),data.available==="نعم"?1:0,data.skills,data.langs,data.desc,data.phone]);
+$("s1").textContent=W.length+"+";
+render();
+}else{
+document.getElementById("offerForm").reset();
+document.getElementById("offerDialog").close();
+O.push([data.company,data.title,data.job,parseInt(data.wil),data.city,data.salary,data.contract,parseInt(data.positions),data.desc,data.requirements,data.date]);
+$("s2").textContent=O.length;
+render();
 }
-
-async function loadSheetData(){
-  try {
-    const response = await fetch(SHEET_URL, {cache: 'no-store'});
-    const raw = await response.text();
-    const match = raw.match(/google\.visualization\.Query\.setResponse\((.*)\);?\s*$/s);
-    if (!match) return;
-    const payload = JSON.parse(match[1]);
-    const rows = payload.table.rows || [];
-    if (!rows.length) return;
-    const sheetWorkers = [];
-    rows.forEach((r) => {
-      const cells = r.c || [];
-      const arr = parseSheetRow(cells);
-      if (arr[0] && arr[1]) sheetWorkers.push(arr);
-    });
-    if (sheetWorkers.length) {
-      W.splice(0, W.length, ...sheetWorkers);
-      $("s1").textContent = W.length + "+";
-      $("s2").textContent = O.length;
-    }
-  } catch (error) {
-    console.warn('Google Sheet not loaded, using default demo data.', error);
-  }
+}catch(err){
+alert("حدث خطأ: "+err.message);
+console.error(err);
+}
 }
 
 coms();
 render();
-loadSheetData();
 </script>
 </body>
 </html>
