@@ -51,8 +51,11 @@ dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:14px 0}dt{col
 .cta{font:inherit;font-weight:800;border:0;border-radius:10px;background:var(--ac);color:var(--acI);padding:11px 20px;cursor:pointer}
 .cta.g{background:var(--soft);color:var(--ink)}
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:56px 0 36px}.how h3{margin:0}.how p{margin:0;color:var(--mute)}
+.sheet-box{margin:16px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.sheet-box h3{margin:0 0 12px;font-size:26px}
+.sheet-box iframe{width:100%;height:760px;border:0;border-radius:12px;background:#fff}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-size:14px}
-@media(max-width:820px){.f{grid-template-columns:1fr 1fr}.grid,.how{grid-template-columns:1fr}}
+@media(max-width:820px){.f{grid-template-columns:1fr 1fr}.grid,.how{grid-template-columns:1fr}.sheet-box iframe{height:620px}}
 </style>
 </head>
 <body>
@@ -70,7 +73,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <div><label for="wil">الولاية</label><select id="wil"></select></div>
 <div><label for="com">البلدية</label><select id="com"></select></div>
 <div id="xw"><label for="exp">الخبرة</label><select id="exp"><option value="0">أي خبرة</option><option value="3">3 سنوات فأكثر</option><option value="5">5 سنوات فأكثر</option><option value="10">10 سنوات فأكثر</option></select></div>
-<div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأحدث</option><option value="r">الأعلى تقييمًا</option></select></div>
+<div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأ��دث</option><option value="r">الأعلى تقييمًا</option></select></div>
 </div>
 </section>
 <div class="bar"><span id="cnt" aria-live="polite"></span><label><input type="checkbox" id="av"> المتاحون الآن فقط</label></div>
@@ -79,6 +82,11 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <div><h3>ابحث بدقة</h3><p>58 ولاية، وبلديات أهم الولايات، مع فلتر الخبرة والتوفر.</p></div>
 <div><h3>اطّلع على التفاصيل</h3><p>مهارات العامل ولغاته، وراتب العرض وعقده ومتطلباته.</p></div>
 <div><h3>تواصل مباشرة</h3><p>اتصل بالطرف الآخر واتفقا دون وسيط.</p></div>
+</section>
+
+<section class="sheet-box">
+  <h3>الجدول المصاحب للبيانات</h3>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQWCgcf7eZA_24sL40vE6bLLGtBwyGALSlmecuSHIStUlTlqC2nTet3n6-8-pjo9bl5KXFJUvMqS6IP/pubhtml?widget=true&headers=false"></iframe>
 </section>
 </main>
 <dialog id="dlg"><div id="dc"></div><div style="display:flex;gap:8px;margin-top:10px"><button class="cta" id="call">اتصال</button><button class="cta g" id="cl">إغلاق</button></div></dialog>
