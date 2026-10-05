@@ -6,8 +6,7 @@
 <title>خديمة DZ - منصة العمال وأصحاب العمل في الجزائر</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f1e8;--ink:#10231e;--mute:#586b65;--card:#fffdf7;--line:#dcd4c2;--ac:#0d5a4a;--acI:#fff;--hot:#e3a21a;--soft:#e4efe9;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#f5f1e8;--ink:#10231e;--mute:#586b65;--card:#fffdf7;--line:#dcd4c2;--ac:#0d5a4a;--acI:#fff;--hot:#e3a21a;--soft:#e4efe9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b18;--ink:#eef2ee;--mute:#9db1ab;--card:#152622;--line:#2a3d38;--ac:#3fb59b;--acI:#06201a;--soft:#1b332d}}
 :root[data-theme="dark"]{--bg:#0e1b18;--ink:#eef2ee;--mute:#9db1ab;--card:#152622;--line:#2a3d38;--ac:#3fb59b;--acI:#06201a;--soft:#1b332d}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -73,7 +72,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <div><label for="wil">الولاية</label><select id="wil"></select></div>
 <div><label for="com">البلدية</label><select id="com"></select></div>
 <div id="xw"><label for="exp">الخبرة</label><select id="exp"><option value="0">أي خبرة</option><option value="3">3 سنوات فأكثر</option><option value="5">5 سنوات فأكثر</option><option value="10">10 سنوات فأكثر</option></select></div>
-<div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأ��دث</option><option value="r">الأعلى تقييمًا</option></select></div>
+<div><label for="srt">الترتيب</label><select id="srt"><option value="n">الأحدث</option><option value="r">الأعلى تقييمًا</option></select></div>
 </div>
 </section>
 <div class="bar"><span id="cnt" aria-live="polite"></span><label><input type="checkbox" id="av"> المتاحون الآن فقط</label></div>
@@ -83,7 +82,6 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <div><h3>اطّلع على التفاصيل</h3><p>مهارات العامل ولغاته، وراتب العرض وعقده ومتطلباته.</p></div>
 <div><h3>تواصل مباشرة</h3><p>اتصل بالطرف الآخر واتفقا دون وسيط.</p></div>
 </section>
-
 <section class="sheet-box">
   <h3>الجدول المصاحب للبيانات</h3>
   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQWCgcf7eZA_24sL40vE6bLLGtBwyGALSlmecuSHIStUlTlqC2nTet3n6-8-pjo9bl5KXFJUvMqS6IP/pubhtml?widget=true&headers=false"></iframe>
@@ -92,6 +90,9 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mute);font-si
 <dialog id="dlg"><div id="dc"></div><div style="display:flex;gap:8px;margin-top:10px"><button class="cta" id="call">اتصال</button><button class="cta g" id="cl">إغلاق</button></div></dialog>
 <footer><div class="w">خديمة DZ. البيانات المعروضة أمثلة للتجربة.</div></footer>
 <script>
+const SHEET_ID = '1u5PvZGDcQmU-KAdjM0fC3BL6woqoFJCPoA_RaXV4Kzc';
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+
 var WL="أدرار,الشلف,الأغواط,أم البواقي,باتنة,بجاية,بسكرة,بشار,البليدة,البويرة,تمنراست,تبسة,تلمسان,تيارت,تيزي وزو,الجزائر,الجلفة,جيجل,سطيف,سعيدة,سكيكدة,سيدي بلعباس,عنابة,قالمة,قسنطينة,المدية,مستغانم,المسيلة,معسكر,ورقلة,وهران,البيض,إليزي,برج بوعريريج,بومرداس,الطارف,تندوف,تيسمسيلت,الوادي,خنشلة,سوق أهراس,تيبازة,ميلة,عين الدفلى,النعامة,عين تموشنت,غرداية,غليزان,تيميمون,برج باجي مختار,أولاد جلال,بني عباس,عين صالح,عين قزام,تقرت,جانت,المغير,المنيعة".split(",");
 var C={16:"الجزائر الوسطى,باب الزوار,بئر مراد رايس,الحراش,بن عكنون,براقي,الدار البيضاء,باب الوادي,الرويبة,حيدرة",
 31:"وهران,السانيا,أرزيو,بئر الجير,بوتليليس,عين الترك,حاسي بونيف",
@@ -110,7 +111,7 @@ var W=[
 ["محمد بوزيد","كهربائي",16,"بئر مراد رايس",8,4.8,1,"تمديدات منزلية,لوحات كهربائية,إنارة","العربية,الفرنسية","كهربائي معتمد، أنجز تمديدات لعشرات الشقق والمحلات.","0550 11 22 33"],
 ["يوسف بن عمر","سباك",31,"السانيا",5,4.5,1,"تركيب حمامات,كشف التسربات,سخانات","العربية","سباك سريع في الأعطال الطارئة.","0661 22 33 44"],
 ["كريم لعيدي","بنّاء",25,"الخروب",12,4.9,0,"بناء هياكل,تبليط,تشطيب","العربية,الأمازيغية","رئيس ورشة بخبرة طويلة في السكنات الفردية.","0770 33 44 55"],
-["سمير حداد","سائق",19,"العلمة",6,4.3,1,"رخصة B وC,نقل بضائع","العربية,الفرنسية","سائق شاحنة خفيفة وسيارة، يعرف الطرق الوطنية.","0555 44 55 66"],
+["سمير حداد","سائق",19,"العلمة",6,4.3,1,"رخصة B وC,نقل بضائع","العربية,الفرنسية","��ائق شاحنة خفيفة وسيارة، يعرف الطرق الوطنية.","0555 44 55 66"],
 ["فاطمة مراد","عامل نظافة",16,"باب الزوار",4,4.7,1,"تنظيف مكاتب,تنظيف بعد البناء","العربية","تعمل بدقة ومواعيد ثابتة.","0560 55 66 77"],
 ["عادل مختاري","سباك",16,"الحراش",10,4.6,0,"شبكات صرف,تدفئة مركزية","العربية,الفرنسية","خبرة في العمارات والمطاعم.","0675 66 77 88"],
 ["رشيد ساحلي","نجار",15,"ذراع بن خدة",7,4.4,1,"أبواب,مطابخ,أثاث مخصص","العربية,الأمازيغية","يصنع الأثاث حسب المقاس.","0793 77 88 99"],
@@ -126,6 +127,7 @@ var O=[
 ["ورشة الإتقان","نجار","نجار",15,"تيزي وزو","50,000 - 70,000 د.ج","دوام كامل",1,"صناعة مطابخ وأبواب خشبية.","خبرة في النجارة العصرية","اليوم"],
 ["مزرعة الواحة","عامل فلاحي","عامل فلاحي",47,"متليلي","40,000 د.ج + سكن","موسمي",6,"موسم جني التمور مع إقامة مجانية.","لا خبرة مطلوبة","منذ 5 أيام"]
 ];
+
 var $=function(i){return document.getElementById(i)},tab="w";
 function opts(s,a,all){s.innerHTML="<option value=''>"+all+"</option>"+a.map(function(x,i){return "<option value='"+x[0]+"'>"+x[1]+"</option>"}).join("")}
 opts($("job"),J.map(function(x){return[x,x]}),"كل المهن");
@@ -159,7 +161,54 @@ if(k[0]=="w"){x=W[i];h="<h2 style='margin:0'>"+x[0]+"</h2><div style='color:var(
 else{x=O[i];h="<h2 style='margin:0'>"+x[1]+"</h2><div style='color:var(--mute)'>"+x[0]+"</div><p>"+x[8]+"</p><dl><dt>الموقع</dt><dd>"+loc(x[3],x[4])+"</dd><dt>الراتب</dt><dd>"+x[5]+"</dd><dt>نوع العقد</dt><dd>"+x[6]+"</dd><dt>المناصب</dt><dd>"+x[7]+"</dd><dt>المتطلبات</dt><dd>"+x[9]+"</dd><dt>النشر</dt><dd>"+x[10]+"</dd></dl>";$("call").textContent="تقدّم لهذا العرض";$("call").onclick=function(){$("dlg").close()}}
 $("dc").innerHTML=h;$("dlg").showModal()};
 $("cl").onclick=function(){$("dlg").close()};
-coms();render();
+
+function normalizeText(v){return String(v||'').trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').replace(/\s+/g,' ');}
+
+function parseSheetRow(raw){
+  const row = {};
+  raw.forEach((cell, idx) => { row[idx] = cell && cell.v !== undefined ? cell.v : ''; });
+  const name = row[0] || row['name'] || '';
+  const job = row[1] || row['job'] || '';
+  const wil = row[2] || row['wil'] || '';
+  const city = row[3] || row['city'] || '';
+  const exp = row[4] || row['exp'] || 0;
+  const score = Number(row[5] || row['score'] || 0);
+  const available = ['true','yes','نعم','1','متاح','available'].includes(String(row[6] || row['available'] || '').trim().toLowerCase());
+  const skills = row[7] || row['skills'] || '';
+  const langs = row[8] || row['langs'] || '';
+  const desc = row[9] || row['desc'] || '';
+  const phone = row[10] || row['phone'] || '';
+  return [name, job, wil, city, Number(exp) || 0, Number(score) || 0, available ? 1 : 0, skills, langs, desc, phone];
+}
+
+async function loadSheetData(){
+  try {
+    const response = await fetch(SHEET_URL, {cache: 'no-store'});
+    const raw = await response.text();
+    const match = raw.match(/google\.visualization\.Query\.setResponse\((.*)\);?\s*$/s);
+    if (!match) return;
+    const payload = JSON.parse(match[1]);
+    const rows = payload.table.rows || [];
+    if (!rows.length) return;
+    const sheetWorkers = [];
+    rows.forEach((r) => {
+      const cells = r.c || [];
+      const arr = parseSheetRow(cells);
+      if (arr[0] && arr[1]) sheetWorkers.push(arr);
+    });
+    if (sheetWorkers.length) {
+      W.splice(0, W.length, ...sheetWorkers);
+      $("s1").textContent = W.length + "+";
+      $("s2").textContent = O.length;
+    }
+  } catch (error) {
+    console.warn('Google Sheet not loaded, using default demo data.', error);
+  }
+}
+
+coms();
+render();
+loadSheetData();
 </script>
 </body>
 </html>
